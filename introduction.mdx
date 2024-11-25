@@ -1,37 +1,103 @@
 Lumix to Davinci Resolve Meta Data import tool allows you to import basic meta data from your lumix video files into Davinci Resolve so that you can see these meta data as you're editing. This is a command line tool, so some mac terminal or windows command line expeirence will be necessary to use this tool.
 
-## Setting up
+This tool is a basic wrapper for the wonderful exiftool, which is required to use this.
 
-The first step to world-class documentation is setting up your editing environments.
+The following meta data is supported:
 
-<CardGroup cols={2}>
-  <Card title="Edit Your Docs" icon="pen-to-square" href="https://mintlify.com/docs/quickstart">
-    Get your docs set up locally for easy development
-  </Card>
+* ISO (including whether or not DR boost is on for GH6 and G9II)
 
-  <Card title="Preview Changes" icon="image" href="https://mintlify.com/docs/development">
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+* Shutter speed
 
-## Make it yours
+* White point (White balance)
 
-Update your docs to your brand and add valuable content for the best user conversion.
+* Lens
 
-<CardGroup cols={2}>
-  <Card title="Customize Style" icon="palette" href="https://mintlify.com/docs/settings/global">
-    Customize your docs to your company's colors and brands
-  </Card>
+* Aperture
 
-  <Card title="Reference APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi">
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
+* Lens focal distance
 
-  <Card title="Add Components" icon="screwdriver-wrench" href="https://mintlify.com/docs/components/accordion">
-    Build interactive features and designs to guide your users
-  </Card>
+* Frame rate
 
-  <Card title="Get Inspiration" icon="stars" href="https://mintlify.com/customers">
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+* Gamma
+
+* Color space
+
+* Video bit rate
+
+* Audio sample rate
+
+* Audio bit rate
+
+* Camera model
+
+* Camera serial
+
+* Camera firmware
+
+* Camera manufacturer
+
+### Mac OS Installation
+
+* Install exiftool
+
+  * [https://exiftool.org/](https://exiftool.org/)
+
+  * I strongly recommend installing the windows executable or the MacOS package
+
+* Python 3 is required. Most macs contain this
+
+  * when in doubt you can download a fresh copy from [https://www.python.org/downloads/macos/](https://www.python.org/downloads/macos/)
+
+* Download the zip file containing the script **lumix-to-resolve-main.zip** and extract the zip files
+
+* Open terminal on your Mac
+
+* Change to the directory the contains the unzipped files
+
+* Copy the script to /usr/local/bin using the following commands in terminal (enter your password when prompted)
+
+  * `sudo cp getmetadata /usr/local/bin`
+
+  * `sudo chmod +x /usr/local/bin/getmetadata`
+
+* Optional - install xmltodict which unlocks ALL meta data avilable (recommended to get the full use out of this tool)
+
+  * enter the following command `sudo pip3 install xmltodict`
+
+### Windows Installation (coming soon)
+
+## Usage
+
+* In your terminal, change to the directory that contains either MOV or MP4 files downloaded directly from a Lumix camera
+
+* Run the following command `getmetadata`
+
+* If the command ran successfully, you will see a list of video files that were found with metadata
+
+* In the directory where you ran the command, look for a file called **resolve-metadata.csv**
+
+* In resolve, either create a new project or open a new project.
+
+* Once inside the project go to the media pool (cut or edit tab)
+
+* Go to the file menu
+
+  * Select **Import Metadata To**
+
+  * select **Media Pool**
+
+* Select the **resolve-metadata.csv** file in the directory where you ran the command
+
+* In the metadata import dialog
+
+  * Note, if clips you'd like to add the metadata to are inside a bin, you must perform the inmport once inside the bin
+
+  * Deselect the **Match using clip start and end time code**
+
+  * In merge options, choose the **Update all metadata fields in the source file option**
+
+  * You should see a confirmation that the metadata was imported
+
+* Head to the edit tab and click the meta data tab and either select **All** or **Camera**
+
+* Select a click from the media pool and you should now see the metadata
