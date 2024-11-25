@@ -1,4 +1,0 @@
-# mintlify
-# mintlify
-# mintlify
-# mintlify
