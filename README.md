@@ -1,4 +1,4 @@
-# Travis' fancy readme
+# Travis' mintlify demo
 
 Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
 
